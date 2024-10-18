@@ -1,0 +1,93 @@
+﻿@model List<PedalaJa.Models.Network>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Redes de Bicicletas</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px; /* Ajuste a altura conforme necessário */
+        }
+
+        .station-marker {
+            z-index: 1000; /* Valor alto para garantir que os marcadores fiquem na frente */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Redes de Bicicletas</h1>
+        <button onclick="updateData()">Atualizar Dados</button>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+    // Inicializa o mapa centrado em Sorocaba, São Paulo
+    var map = L.map('map').setView([-23.5016, -47.4534], 13);
+
+    // Adiciona uma camada de mapa
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Adiciona os marcadores das redes ao mapa
+    var networks = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model, new Newtonsoft.Json.JsonSerializerSettings
+    {
+        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    }));
+
+    networks.forEach(function(network) {
+        if (network.Latitude && network.Longitude) { // Certifique-se de usar os nomes corretos das propriedades
+            var marker = L.marker([network.Latitude, network.Longitude]).addTo(map);
+            marker.bindPopup(`<b>${network.Name}</b><br>${network.Company}`);
+        }
+    });
+
+        // Função para carregar e adicionar as estações ao mapa
+        function loadStations() {
+            fetch('/Home/GetStations') // Endpoint para obter as estações do banco de dados
+                .then(response => response.json())
+                .then(stations => {
+                    stations.forEach(function (station) {
+                        if (station.latitude && station.longitude) { // Corrigido para acessar com minúsculas
+                            var marker = L.marker([station.latitude, station.longitude]).addTo(map);
+                            marker.bindPopup(`
+                        <b>Estação: ${station.name || 'Sem nome'}</b><br>
+                        Bikes livres: ${station.freeBikes}<br>
+                        Slots vazios: ${station.emptySlots}<br>
+                        Companhia: ${station.company}
+                    `);
+                        } else {
+                            console.warn('Estação sem coordenadas válidas:', station);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar as estações:', error);
+                });
+        }
+
+
+    // Chama a função para carregar as estações quando a página é carregada
+    document.addEventListener('DOMContentLoaded', loadStations);
+
+    // Função para atualizar dados
+    function updateData() {
+        fetch('/Home/UpdateData', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    loadStations(); // Recarrega as estações sem recarregar a página
+                } else {
+                    alert('Erro ao atualizar os dados.');
+                }
+            });
+    }
+    </script>
+
+</body>
+</html>

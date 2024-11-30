@@ -1,0 +1,168 @@
+﻿@model List<PedalaJa.Models.Network>
+
+@{
+    Layout = null; // Remover o layout para evitar o menu de navegação do Razor
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encontre sua bike</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Encontre sua bike aqui</h1>
+            <div class="map-placeholder">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="search-box">
+                <h2>LocalizaJá</h2>
+                <input type="text" id="cepInput" placeholder="Digite seu CEP" />
+                <button onclick="findByAddress()">Pesquisar</button>
+                <button onclick="clearSearch()">Limpar</button>  <!-- Botão de limpar -->
+            </div>
+            <div class="bike-info">
+                <img src="~/images/bike-sp-poster.png" alt="Bike SP - Projeto de incentivo ao uso diário de bicicletas">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>// Inicializa o mapa centrado em Sorocaba, São Paulo
+        var map = L.map('map').setView([-23.5016, -47.4534], 13);
+
+        // Variáveis para armazenar os marcadores
+        var userMarker = null;
+        var nearestStationMarker = null;
+        var networkMarkers = [];
+
+        // Adiciona uma camada de mapa
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Função para carregar e adicionar as estações ao mapa
+        function loadStations() {
+            fetch('/Home/GetStations') // Endpoint para obter as estações do banco de dados
+                .then(response => response.json())
+                .then(stations => {
+                    stations.forEach(function (station) {
+                        if (station.latitude && station.longitude) {
+                            var marker = L.marker([station.latitude, station.longitude]).addTo(map);
+                            marker.bindPopup(`
+                                    <b>Estação: ${station.name || 'Sem nome'}</b><br>
+                                    Bikes livres: ${station.freeBikes}<br>
+                                    Slots vazios: ${station.emptySlots}<br>
+                                    Companhia: ${station.company}
+                                `);
+                            networkMarkers.push(marker); // Armazenar os marcadores para a rede
+                        } else {
+                            console.warn('Estação sem coordenadas válidas:', station);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar as estações:', error);
+                });
+        }
+
+        // Função para limpar os marcadores de localização do usuário e estação mais próxima
+        function clearSearch() {
+            // Remove os marcadores da localização do usuário e da estação mais próxima
+            if (userMarker) {
+                map.removeLayer(userMarker);
+            }
+            if (nearestStationMarker) {
+                map.removeLayer(nearestStationMarker);
+            }
+
+            // Limpa o valor do campo de CEP
+            document.getElementById('cepInput').value = '';
+        }
+
+        // Função para geocodificar o endereço (CEP ou nome)
+        function geocodeAddress(address) {
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const lat = parseFloat(data[0].lat);
+                        const lon = parseFloat(data[0].lon);
+                        map.setView([lat, lon], 13);  // Centraliza o mapa no endereço encontrado
+
+                        // Adiciona o marcador para a localização do usuário
+                        userMarker = L.marker([lat, lon], {
+                            icon: L.icon({
+                                iconUrl: '/images/arrowIcon.svg',  // Caminho para o ícone da localização do usuário
+                                iconSize: [30, 50],
+                                iconAnchor: [15, 50],
+                                popupAnchor: [1, -34],
+                                shadowSize: [41, 41]
+                            })
+                        }).addTo(map).bindPopup(`<b>Localização do Usuário</b><br>${data[0].display_name}`).openPopup();
+
+                        // Chama a função para mostrar a estação mais próxima
+                        findNearestStation(lat, lon);
+                    } else {
+                        alert('Endereço ou CEP não encontrado.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao geocodificar o endereço:', error);
+                });
+        }
+
+        // Função de pesquisa que será chamada ao clicar no botão
+        function findByAddress() {
+            const address = document.getElementById('cepInput').value;  // O valor digitado pelo usuário
+            if (address) {
+                clearSearch();  // Limpar apenas a localização do usuário e estação mais próxima
+                geocodeAddress(address); // Passa o endereço para geocodificação
+            } else {
+                alert("Por favor, insira um endereço ou CEP.");
+            }
+        }
+
+        // Função para encontrar a estação mais próxima
+        function findNearestStation(lat, lon) {
+            fetch(`/Home/GetNearestStation?lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(stations => {
+                    if (stations) {
+                        const nearestStation = stations[0];  // Assume a estação mais próxima
+                        nearestStationMarker = L.marker([nearestStation.latitude, nearestStation.longitude], {
+                            icon: L.icon({
+                                iconUrl: '/images/searchIcon.svg',  // Caminho para o ícone da estação
+                                iconSize: [30, 50],
+                                iconAnchor: [15, 50],
+                                popupAnchor: [1, -34],
+                                shadowSize: [41, 41]
+                            })
+                        }).addTo(map).bindPopup(`
+                                <b>Estação Mais Próxima</b><br>
+                                ${nearestStation.name}<br>
+                                Bikes livres: ${nearestStation.freeBikes}<br>
+                                Slots vazios: ${nearestStation.emptySlots}<br>
+                                Companhia: ${nearestStation.company}
+                            `).openPopup();
+                    } else {
+                        alert('Nenhuma estação encontrada nas proximidades.');
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar estação:', error));
+        }
+
+        // Chama a função para carregar as estações quando a página é carregada
+        document.addEventListener('DOMContentLoaded', loadStations);</script>
+</body>
+</html>

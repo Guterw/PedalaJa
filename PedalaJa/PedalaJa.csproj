@@ -23,10 +23,22 @@
     <None Remove="Services\" />
     <None Remove="Data\" />
     <None Remove="DTOs\" />
+    <None Remove="Views\LandingPage\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Data\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Views\LandingPage\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\LandingPage\LandingPage.cshtml" />
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Properties\launchSettings.json">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

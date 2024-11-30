@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null; // Remover o layout para evitar o menu de navegação do Razor
+}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PedalaJá</title>
+    <!-- Link para o CSS externo -->
+    <link rel="stylesheet" href="~/css/landingPage.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>PedalaJá</h1>
+            <div class="buttons">
+                <!-- Link para a página Home (Index) -->
+                <a class="btn primary" href="@Url.Action("Index", "Home")">LocalizaJá</a>
+                <button class="btn secondary">Suporte</button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="orange-bg"></div>
+            <img src="~/images/bike.png" alt="Bicicleta" class="bike">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 80vw;
+    height: 70vh;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Alinha os elementos à esquerda */
+}
+
+    .left h1 {
+        font-size: 4rem; /* Título maior */
+        font-weight: bold;
+        color: #333;
+        margin: 0 0 150px 0;
+    }
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaçamento entre os botões */
+}
+
+.btn {
+    font-size: 1rem; /* Botões maiores */
+    padding: 15px 30px; /* Mais preenchimento interno */
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 150px; /* Largura ajustada */
+}
+
+    .btn.primary {
+        background-color: #333;
+        color: #fff;
+        border: none;
+    }
+
+    .btn.secondary {
+        background-color: #fff;
+        color: #333;
+        border: 2px solid #333;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+.right {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Mantém a bicicleta no lado direito */
+    background-color: #FF6A00;
+    max-width: 300px;
+}
+
+.orange-bg {
+    position: absolute;
+    background-color: #FF6A00;
+    /*width: 50%; /* Atinge metade da bicicleta */
+    height: 100%;
+    left: 0;
+    z-index: 0;
+}
+
+.bike {
+    position: relative;
+    z-index: 1;
+    max-width: 170%;
+    height: auto;
+}

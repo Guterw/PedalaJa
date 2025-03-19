@@ -35,6 +35,7 @@ Para restaurar os pacotes e dependências:
 dotnet restore
 
 -Qualquer problema rode:
+
 dotnet ef database drop
 dotnet ef database update
 

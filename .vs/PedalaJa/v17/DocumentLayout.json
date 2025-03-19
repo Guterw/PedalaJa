@@ -1,0 +1,108 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Luccas\\AppData\\Local\\Temp\\xvwqebha..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|c:\\users\\luccas\\documents\\github\\pedalaja\\pedalaja\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|solutionrelative:pedalaja\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|c:\\users\\luccas\\documents\\github\\pedalaja\\pedalaja\\license||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|solutionrelative:pedalaja\\license||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|c:\\users\\luccas\\documents\\github\\pedalaja\\pedalaja\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|solutionrelative:pedalaja\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|c:\\users\\luccas\\documents\\github\\pedalaja\\pedalaja\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{23DC84A7-6298-4A0C-9264-99CEF8760F7C}|PedalaJa\\PedalaJa.csproj|solutionrelative:pedalaja\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Luccas\\AppData\\Local\\Temp\\xvwqebha..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Luccas\\AppData\\Local\\Temp\\xvwqebha..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SQLQuery3.sql ",
+              "DocumentMoniker": "C:\\Users\\Luccas\\AppData\\Local\\Temp\\xvwqebha..sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\xvwqebha..sql",
+              "ToolTip": "SQLQuery3.sql *",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-18T23:58:36.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LICENSE",
+              "DocumentMoniker": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\LICENSE",
+              "RelativeDocumentMoniker": "PedalaJa\\LICENSE",
+              "ToolTip": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\LICENSE",
+              "RelativeToolTip": "PedalaJa\\LICENSE",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-03-18T23:52:46.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "PedalaJa\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "PedalaJa\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-18T23:51:11.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\appsettings.json",
+              "RelativeDocumentMoniker": "PedalaJa\\appsettings.json",
+              "ToolTip": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\appsettings.json",
+              "RelativeToolTip": "PedalaJa\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-18T23:26:18.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\README.md",
+              "RelativeDocumentMoniker": "PedalaJa\\README.md",
+              "ToolTip": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\README.md",
+              "RelativeToolTip": "PedalaJa\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-03-18T23:18:22.061Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

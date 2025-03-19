@@ -4,7 +4,7 @@ wwwroot\css\styles.css
 wwwroot\favicon.ico
 wwwroot\images\arrowIcon.svg
 wwwroot\images\bike.png
-wwwroot\images\bike-sp-poster.png
+wwwroot\images\bike-sp.png
 wwwroot\images\searchIcon.svg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css

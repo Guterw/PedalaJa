@@ -60,17 +60,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XZqLuQ77XpiO\u002BFq\u002B4YwQur0vam3o6uPr0\u002BM8RmA9iGM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"272"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u0022XZqLuQ77XpiO\u002BFq\u002B4YwQur0vam3o6uPr0\u002BM8RmA9iGM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 22:12:08 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/PedalaJa/images/bike-sp-poster.etfei3o81i.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bike-sp-poster.png'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/PedalaJa/images/bike-sp.dd9m68vyhn.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bike-sp.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"etfei3o81i"},{"Name":"integrity","Value":"sha256-bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ="},{"Name":"label","Value":"_content/PedalaJa/images/bike-sp-poster.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"118282"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 22:12:08 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"dd9m68vyhn"},{"Name":"integrity","Value":"sha256-8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M="},{"Name":"label","Value":"_content/PedalaJa/images/bike-sp.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"95707"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00228S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 02:13:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/PedalaJa/images/bike-sp-poster.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bike-sp-poster.png'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/PedalaJa/images/bike-sp.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bike-sp.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"118282"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 22:12:08 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"95707"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00228S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 02:13:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PedalaJa/images/bike.kkmk1yr7tw.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bike.png'))</AssetFile>

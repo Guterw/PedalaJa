@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PedalaJa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b540a81c874b433535b001b4e44a078affd519cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b107b6e43459ac57895cf07096929998eac5d8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PedalaJa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PedalaJa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

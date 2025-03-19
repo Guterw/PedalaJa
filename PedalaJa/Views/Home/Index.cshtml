@@ -1,7 +1,7 @@
 ﻿@model List<PedalaJa.Models.Network>
 
 @{
-    Layout = null; // Remover o layout para evitar o menu de navegação do Razor
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -10,8 +10,137 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encontre sua bike</title>
+    <link rel="icon" type="image/png" href="~/images/bike.png" />
     <link rel="stylesheet" href="~/css/styles.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            color: gray;
+            margin: 0 5px;
+        }
+
+            .star.filled {
+                color: gold;
+            }
+
+        .popup-content {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Pop-up flutuante */
+        #ratingModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 10px;
+        }
+
+        #ratingOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #starsContainer {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #4CAF50; /* Cor de fundo do botão */
+            color: white; /* Cor do texto */
+            padding: 10px 20px; /* Espaçamento interno */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #45a049; /* Cor de fundo ao passar o mouse */
+            }
+
+            button:focus {
+                outline: none; /* Remove o contorno padrão ao clicar */
+            }
+
+        /* Centralizar os botões dentro da div.search-box */
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza os botões horizontalmente */
+            justify-content: center; /* Centraliza os botões verticalmente, se necessário */
+            padding: 20px;
+            gap: 10px; /* Espaçamento entre os botões */
+        }
+
+
+        /* Estilo geral para os botões */
+        .search-btn, .clear-btn {
+            width: auto; /* Ajusta a largura dos botões */
+            padding: 12px 20px; /* Mais padding para os botões */
+            font-size: 16px; /* Tamanho de fonte */
+            text-align: center; /* Centraliza o texto */
+            cursor: pointer; /* Indicador de clique */
+            border-radius: 5px; /* Bordas arredondadas */
+            border: 2px solid #000000; /* Borda verde visível sempre */
+            background-color: #111111; /* Cor de fundo verde */
+            color: white; /* Cor do texto */
+            display: flex;
+            align-items: center; /* Centraliza verticalmente o texto */
+            justify-content: center; /* Centraliza horizontalmente o texto */
+            box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+            transition: all 0.3s ease; /* Transição suave para o hover */
+            margin: 5px 0; /* Espaçamento vertical entre os botões */
+        }
+
+            /* Efeito hover para os botões */
+            .search-btn:hover, .clear-btn:hover {
+                background-color: #45a049; /* Cor de fundo um pouco mais escura */
+                border-color: #45a049; /* Altera a borda para a mesma cor do fundo */
+            }
+
+            /* Efeito quando o botão é pressionado */
+            .search-btn:active, .clear-btn:active {
+                background-color: #388e3c; /* Cor ainda mais escura no clique */
+                border-color: #388e3c; /* Muda a cor da borda no clique */
+            }
+
+        /* Centralizar o texto dentro do botão */
+        .search-btn, .clear-btn {
+            display: flex;
+            align-items: center; /* Centraliza verticalmente o texto */
+            justify-content: center; /* Centraliza horizontalmente o texto */
+        }
+
+        .bike-info {
+            width: 100%; /* Garante que a div ocupe toda a largura disponível */
+            max-width: 100%; /* Garante que a largura da div não ultrapasse a largura do contêiner pai */
+            overflow: hidden; /* Impede que a imagem ultrapasse os limites da div */
+        }
+
+            .bike-info img {
+                width: 100%; /* Faz a imagem ocupar toda a largura da div */
+                height: auto; /* Mantém a proporção da imagem */
+                object-fit: contain; /* Garante que a imagem se ajuste corretamente dentro da div */
+            }
+
+
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,32 +153,40 @@
         <div class="right-panel">
             <div class="search-box">
                 <h2>LocalizaJá</h2>
-                <input type="text" id="cepInput" placeholder="Digite seu CEP" />
-                <button onclick="findByAddress()">Pesquisar</button>
-                <button onclick="clearSearch()">Limpar</button>  <!-- Botão de limpar -->
+                <input type="text" id="cepInput" placeholder="Digite seu CEP (Não esqueça de colocar traço -)" />
+                <button class="search-btn" onclick=" findByAddress()">Pesquisar</button>
+                <button class="clear-btn" onclick="clearSearch()">Limpar</button>
             </div>
             <div class="bike-info">
-                <img src="~/images/bike-sp-poster.png" alt="Bike SP - Projeto de incentivo ao uso diário de bicicletas">
+                <img src="~/images/bike-sp.png" alt="Bike SP - Projeto de incentivo ao uso diário de bicicletas">
             </div>
         </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>// Inicializa o mapa centrado em Sorocaba, São Paulo
-        var map = L.map('map').setView([-23.5016, -47.4534], 13);
+    <!-- Modal para Avaliar a Estação -->
+    <div id="ratingOverlay"></div>
+    <div id="ratingModal">
+        <h2>Avalie a Estação</h2>
+        <div id="starsContainer"></div>
+        <button onclick="submitRating()">Salvar Avaliação</button>
+        <button onclick="closeModal()">Fechar</button>
+    </div>
 
-        // Variáveis para armazenar os marcadores
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-23.5016, -47.4534], 13);
         var userMarker = null;
         var nearestStationMarker = null;
         var networkMarkers = [];
+        var selectedRating = null;
+        var currentStationId = null;
 
-        // Adiciona uma camada de mapa
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Função para carregar e adicionar as estações ao mapa
+        // Função para carregar as estações e mostrar as estrelas
         function loadStations() {
             fetch('/Home/GetStations') // Endpoint para obter as estações do banco de dados
                 .then(response => response.json())
@@ -57,15 +194,17 @@
                     stations.forEach(function (station) {
                         if (station.latitude && station.longitude) {
                             var marker = L.marker([station.latitude, station.longitude]).addTo(map);
-                            marker.bindPopup(`
-                                    <b>Estação: ${station.name || 'Sem nome'}</b><br>
-                                    Bikes livres: ${station.freeBikes}<br>
-                                    Slots vazios: ${station.emptySlots}<br>
-                                    Companhia: ${station.company}
-                                `);
-                            networkMarkers.push(marker); // Armazenar os marcadores para a rede
-                        } else {
-                            console.warn('Estação sem coordenadas válidas:', station);
+
+                            let popupContent = `
+                                <b>Estação: ${station.name || 'Sem nome'}</b><br>
+                                Bikes livres: ${station.freeBikes}<br>
+                                Slots vazios: ${station.emptySlots}<br>
+                                Companhia: ${station.company}<br>
+                                <b>Nota de Segurança: </b>${renderStars(station.averageRating)}<br>
+                                <button onclick="openRatingModal(${station.id})">Avaliar Estação</button>
+                            `;
+                            marker.bindPopup(popupContent);
+                            networkMarkers.push(marker);
                         }
                     });
                 })
@@ -74,33 +213,107 @@
                 });
         }
 
-        // Função para limpar os marcadores de localização do usuário e estação mais próxima
+        // Função para renderizar as estrelas, preenchendo até a média de avaliação
+        function renderStars(rating) {
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += `<span class="star ${i <= rating ? 'filled' : ''}" data-value="${i}">★</span>`;
+            }
+            return starsHtml;
+        }
+
+        // Função para abrir o modal de avaliação
+        function openRatingModal(stationId) {
+            currentStationId = stationId;
+            selectedRating = null;
+            document.getElementById('starsContainer').innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const starElement = document.createElement('span');
+                starElement.classList.add('star');
+                starElement.setAttribute('data-value', i);
+                starElement.innerText = '★';
+                starElement.addEventListener('click', function() {
+                    selectedRating = i;
+                    updateStars();
+                });
+                document.getElementById('starsContainer').appendChild(starElement);
+            }
+
+            document.getElementById('ratingOverlay').style.display = 'block';
+            document.getElementById('ratingModal').style.display = 'block';
+        }
+
+        // Função para atualizar as estrelas no modal
+        function updateStars() {
+            const stars = document.querySelectorAll('#starsContainer .star');
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= selectedRating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.remove('filled');
+                }
+            });
+        }
+
+        // Função para enviar a avaliação ao servidor
+        function submitRating() {
+            if (selectedRating === null) {
+                alert("Por favor, selecione uma nota.");
+                return;
+            }
+
+            fetch(`/Home/RateStation?stationId=${currentStationId}&rating=${selectedRating}`, {
+                method: 'POST',
+            })
+
+            .then(response => response.json())
+            .then(data => {
+                alert('Avaliação salva com sucesso!');
+                closeModal();
+                loadStations();
+                location.reload();// Recarregar as estações com a nova avaliação
+            })
+            .catch(error => console.error('Erro ao enviar avaliação:', error));
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            document.getElementById('ratingOverlay').style.display = 'none';
+            document.getElementById('ratingModal').style.display = 'none';
+        }
+
+        // Função para limpar a pesquisa e remover os marcadores
         function clearSearch() {
-            // Remove os marcadores da localização do usuário e da estação mais próxima
             if (userMarker) {
                 map.removeLayer(userMarker);
             }
             if (nearestStationMarker) {
                 map.removeLayer(nearestStationMarker);
             }
-
-            // Limpa o valor do campo de CEP
             document.getElementById('cepInput').value = '';
         }
 
-        // Função para geocodificar o endereço (CEP ou nome)
+        // Função para pesquisar com o CEP
+        function findByAddress() {
+            const address = document.getElementById('cepInput').value;
+            if (address) {
+                clearSearch();
+                geocodeAddress(address);
+            } else {
+                alert("Por favor, insira um endereço ou CEP.");
+            }
+        }
+
+        // Função para geocodificar o endereço
         function geocodeAddress(address) {
             const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`;
-
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
                         const lat = parseFloat(data[0].lat);
                         const lon = parseFloat(data[0].lon);
-                        map.setView([lat, lon], 13);  // Centraliza o mapa no endereço encontrado
-
-                        // Adiciona o marcador para a localização do usuário
+                        map.setView([lat, lon], 13);
                         userMarker = L.marker([lat, lon], {
                             icon: L.icon({
                                 iconUrl: '/images/arrowIcon.svg',  // Caminho para o ícone da localização do usuário
@@ -110,27 +323,12 @@
                                 shadowSize: [41, 41]
                             })
                         }).addTo(map).bindPopup(`<b>Localização do Usuário</b><br>${data[0].display_name}`).openPopup();
-
-                        // Chama a função para mostrar a estação mais próxima
                         findNearestStation(lat, lon);
                     } else {
                         alert('Endereço ou CEP não encontrado.');
                     }
                 })
-                .catch(error => {
-                    console.error('Erro ao geocodificar o endereço:', error);
-                });
-        }
-
-        // Função de pesquisa que será chamada ao clicar no botão
-        function findByAddress() {
-            const address = document.getElementById('cepInput').value;  // O valor digitado pelo usuário
-            if (address) {
-                clearSearch();  // Limpar apenas a localização do usuário e estação mais próxima
-                geocodeAddress(address); // Passa o endereço para geocodificação
-            } else {
-                alert("Por favor, insira um endereço ou CEP.");
-            }
+                .catch(error => console.error('Erro ao geocodificar o endereço:', error));
         }
 
         // Função para encontrar a estação mais próxima
@@ -139,22 +337,14 @@
                 .then(response => response.json())
                 .then(stations => {
                     if (stations) {
-                        const nearestStation = stations[0];  // Assume a estação mais próxima
-                        nearestStationMarker = L.marker([nearestStation.latitude, nearestStation.longitude], {
-                            icon: L.icon({
-                                iconUrl: '/images/searchIcon.svg',  // Caminho para o ícone da estação
-                                iconSize: [30, 50],
-                                iconAnchor: [15, 50],
-                                popupAnchor: [1, -34],
-                                shadowSize: [41, 41]
-                            })
-                        }).addTo(map).bindPopup(`
-                                <b>Estação Mais Próxima</b><br>
-                                ${nearestStation.name}<br>
-                                Bikes livres: ${nearestStation.freeBikes}<br>
-                                Slots vazios: ${nearestStation.emptySlots}<br>
-                                Companhia: ${nearestStation.company}
-                            `).openPopup();
+                        const nearestStation = stations[0];
+                        nearestStationMarker = L.marker([nearestStation.latitude, nearestStation.longitude]).addTo(map).bindPopup(`
+                            <b>Estação Mais Próxima</b><br>
+                            ${nearestStation.name}<br>
+                            Bikes livres: ${nearestStation.freeBikes}<br>
+                            Slots vazios: ${nearestStation.emptySlots}<br>
+                            Companhia: ${nearestStation.company}
+                        `).openPopup();
                     } else {
                         alert('Nenhuma estação encontrada nas proximidades.');
                     }
@@ -162,7 +352,7 @@
                 .catch(error => console.error('Erro ao buscar estação:', error));
         }
 
-        // Chama a função para carregar as estações quando a página é carregada
-        document.addEventListener('DOMContentLoaded', loadStations);</script>
+        document.addEventListener('DOMContentLoaded', loadStations);
+    </script>
 </body>
 </html>

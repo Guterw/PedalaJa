@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PedalaJa.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018063257_AddNetworkStationsNavigation")]
-    partial class AddNetworkStationsNavigation
+    [Migration("20250319004922_UpdatingTableStationRating")]
+    partial class UpdatingTableStationRating
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,11 +80,38 @@ namespace PedalaJa.Migrations
                     b.Property<int>("NetworkId")
                         .HasColumnType("int");
 
+                    b.Property<double>("SecurityRating")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NetworkId");
 
                     b.ToTable("Stations");
+                });
+
+            modelBuilder.Entity("StationRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StationId");
+
+                    b.ToTable("StationRatings");
                 });
 
             modelBuilder.Entity("PedalaJa.Models.Station", b =>
@@ -96,6 +123,17 @@ namespace PedalaJa.Migrations
                         .IsRequired();
 
                     b.Navigation("Network");
+                });
+
+            modelBuilder.Entity("StationRating", b =>
+                {
+                    b.HasOne("PedalaJa.Models.Station", "Station")
+                        .WithMany()
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Station");
                 });
 
             modelBuilder.Entity("PedalaJa.Models.Network", b =>

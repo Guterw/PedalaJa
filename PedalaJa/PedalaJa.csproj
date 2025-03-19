@@ -30,7 +30,6 @@
     <Folder Include="Data\" />
     <Folder Include="DTOs\" />
     <Folder Include="Views\LandingPage\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\LandingPage\LandingPage.cshtml" />

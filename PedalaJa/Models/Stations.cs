@@ -12,5 +12,7 @@
         // Chave estrangeira para a rede
         public int NetworkId { get; set; }
         public Network Network { get; set; } // Navegação de volta para a rede
+
+        public double SecurityRating { get; set; }  // Média das notas de segurança
     }
 }

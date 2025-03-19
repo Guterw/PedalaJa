@@ -11,4 +11,5 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Network> Networks { get; set; }
     public DbSet<Station> Stations { get; set; }
+    public DbSet<StationRating> StationRatings { get; set; }
 }

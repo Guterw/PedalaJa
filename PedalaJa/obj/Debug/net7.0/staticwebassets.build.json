@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rSWfNZewD37vYoyvvqV5yZke/0Q2Qavsrxj+1LOIrWk=",
+  "Hash": "6HSCVKPMUOM3hgr51Z94lNfBGYOzx/gC63cSUQ5pKA4=",
   "Source": "PedalaJa",
   "BasePath": "_content/PedalaJa",
   "Mode": "Default",
@@ -185,12 +185,12 @@
       "OriginalItemSpec": "wwwroot\\images\\bike.png"
     },
     {
-      "Identity": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp-poster.png",
+      "Identity": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp.png",
       "SourceId": "PedalaJa",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\",
       "BasePath": "_content/PedalaJa",
-      "RelativePath": "images/bike-sp-poster#[.{fingerprint}]?.png",
+      "RelativePath": "images/bike-sp#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -199,11 +199,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "etfei3o81i",
-      "Integrity": "bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ=",
+      "Fingerprint": "dd9m68vyhn",
+      "Integrity": "8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\bike-sp-poster.png"
+      "OriginalItemSpec": "wwwroot\\images\\bike-sp.png"
     },
     {
       "Identity": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\searchIcon.svg",
@@ -1939,8 +1939,8 @@
       ]
     },
     {
-      "Route": "images/bike-sp-poster.etfei3o81i.png",
-      "AssetFile": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp-poster.png",
+      "Route": "images/bike-sp.dd9m68vyhn.png",
+      "AssetFile": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1949,7 +1949,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "118282"
+          "Value": "95707"
         },
         {
           "Name": "Content-Type",
@@ -1957,11 +1957,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ=\""
+          "Value": "\"8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 22:12:08 GMT"
+          "Value": "Wed, 19 Mar 2025 02:13:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1971,21 +1971,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "etfei3o81i"
+          "Value": "dd9m68vyhn"
         },
         {
           "Name": "label",
-          "Value": "images/bike-sp-poster.png"
+          "Value": "images/bike-sp.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ="
+          "Value": "sha256-8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M="
         }
       ]
     },
     {
-      "Route": "images/bike-sp-poster.png",
-      "AssetFile": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp-poster.png",
+      "Route": "images/bike-sp.png",
+      "AssetFile": "C:\\Users\\Luccas\\Documents\\GitHub\\PedalaJa\\PedalaJa\\wwwroot\\images\\bike-sp.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1994,7 +1994,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "118282"
+          "Value": "95707"
         },
         {
           "Name": "Content-Type",
@@ -2002,11 +2002,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ=\""
+          "Value": "\"8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 22:12:08 GMT"
+          "Value": "Wed, 19 Mar 2025 02:13:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2016,7 +2016,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-bvqjd2n3yZK8Zsx8sAIm2tOU8r9PyD0ynjz7GT9YwhQ="
+          "Value": "sha256-8S5T3AUh2BFkD7cLtYTTs9oawh6dAZByj93YWT84C0M="
         }
       ]
     },
